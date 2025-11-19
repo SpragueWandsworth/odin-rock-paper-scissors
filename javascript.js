@@ -5,6 +5,9 @@
 
 let playerScore = 0;
 let computerScore = 0;
+let roundsPlayed = 0;
+
+playGame();
 
 function getComputerChoice() {
     let randomNumber = Math.random();
@@ -65,14 +68,18 @@ function playRound(userChoice, computerChoice) {
             computerScore += 1;
         }
 
+        roundsPlayed += 1;
+        console.log(roundsPlayed + " rounds played.")
         console.log(winner + " won the game.");
         console.log("the score is now " + playerScore + " to player, and " + computerScore + " to the computer.")
 }
 
-const computerChoice = getComputerChoice();
-const playerChoice = getPlayerChoice();
-
-playRound(playerChoice, computerChoice);
 
 getComputerChoice();
 getPlayerChoice();
+
+function playGame() {
+    const computerChoice = getComputerChoice();
+    const playerChoice = getPlayerChoice();
+    playRound(playerChoice, computerChoice);
+}
