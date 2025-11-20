@@ -45,19 +45,20 @@ function getPlayerChoice() {
 
 function getWinner(userChoice, computerChoice) {
     let winner = undefined;
+
+        if (userChoice === computerChoice) {
+            winner = "draw";
+        }
         if (computerChoice === "rock" ) {
-            if (userChoice === "rock"){winner = "draw"}
-            else if (userChoice === "scissors"){winner = "computer"}
+            if (userChoice === "scissors"){winner = "computer"}
             else if (userChoice === "paper"){winner = "player"};
         }
         else if (computerChoice === "paper" ) {
-            if (userChoice === "paper"){winner = "draw"}
-            else if (userChoice === "rock"){winner = "computer"}
+            if (userChoice === "rock"){winner = "computer"}
             else if (userChoice === "scissors"){winner = "player"};
         }
         else if (computerChoice === "scissors" ) {
-            if (userChoice === "scissors"){winner = "draw"}
-            else if (userChoice === "paper"){winner = "computer"}
+            if (userChoice === "paper"){winner = "computer"}
             else if (userChoice === "rock"){winner = "player"};
         }
 
