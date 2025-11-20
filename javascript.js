@@ -1,13 +1,13 @@
 
-//get random number between 0 and 1
-//choose either rock, paper or scissors based on that number to result
-//return result
-
 let playerScore = 0;
 let computerScore = 0;
 let roundsPlayed = 0;
 
 playGame();
+
+//get random number between 0 and 1
+//choose either rock, paper or scissors based on that number to result
+//return result
 
 function getComputerChoice() {
     let randomNumber = Math.random();
@@ -41,9 +41,9 @@ function getPlayerChoice() {
 //get human choice
 //compare choices
 //assign winner
-//add one point to the winner
+//increase rounds played
 
-function playRound(userChoice, computerChoice) {
+function getWinner(userChoice, computerChoice) {
     let winner = undefined;
         if (computerChoice === "rock" ) {
             if (userChoice === "rock"){winner = "draw"}
@@ -61,25 +61,50 @@ function playRound(userChoice, computerChoice) {
             else if (userChoice === "rock"){winner = "player"};
         }
 
-        if (winner === "player") {
+        roundsPlayed += 1;
+        console.log(roundsPlayed + " rounds played.");
+        return winner;
+}
+
+//get players choice
+//get computers choice
+//get the winner
+//increase the winners points
+//log the new score
+
+function playRound() {
+    const computerChoice = getComputerChoice();
+    const playerChoice = getPlayerChoice();
+
+    let winner = getWinner(playerChoice, computerChoice);
+    winner;
+
+    if (winner === "player") {
             playerScore += 1;
         }
         else if (winner === "computer") {
             computerScore += 1;
         }
-
-        roundsPlayed += 1;
-        console.log(roundsPlayed + " rounds played.")
-        console.log(winner + " won the game.");
-        console.log("the score is now " + playerScore + " to player, and " + computerScore + " to the computer.")
+    console.log("the score is now " + playerScore + " to player, and " + computerScore + " to the computer.");
 }
 
-
-getComputerChoice();
-getPlayerChoice();
+//if less than 5 rounds have been played, play round
+//log final result
 
 function playGame() {
-    const computerChoice = getComputerChoice();
-    const playerChoice = getPlayerChoice();
-    playRound(playerChoice, computerChoice);
+    let totalRounds = 5;
+    while (roundsPlayed < totalRounds) {
+        playRound();
+    }
+    
+    if (playerScore > computerScore) {
+        console.log("You won the game!")
+    }
+    else if (playerScore < computerScore) {
+        console.log("You lost the game!")
+    }
+    else {
+        console.log("The game was a draw.")
+    }
+
 }
