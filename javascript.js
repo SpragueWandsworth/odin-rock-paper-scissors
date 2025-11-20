@@ -10,16 +10,16 @@ playGame();
 //return result
 
 function getComputerChoice() {
-    let randomNumber = Math.random();
+    let randomNumber = Math.floor(Math.random() * 3);
     let result = undefined;
 
-    if (randomNumber >= 0 && randomNumber < 0.34) {
+    if (randomNumber === 0) {
         result = "rock";
     }
-    else if (randomNumber >= 0.34 && randomNumber < 0.67) {
+    else if (randomNumber === 1) {
         result = "paper";
     }
-    else if (randomNumber >= 0.67 && randomNumber <=1) {
+    else if (randomNumber === 2) {
         result = "scissors";
     }
     console.log("computer picked " + result);
@@ -61,7 +61,7 @@ function getWinner(userChoice, computerChoice) {
             else if (userChoice === "rock"){winner = "player"};
         }
 
-        roundsPlayed += 1;
+        roundsPlayed++;
         console.log(roundsPlayed + " rounds played.");
         return winner;
 }
@@ -80,10 +80,10 @@ function playRound() {
     winner;
 
     if (winner === "player") {
-            playerScore += 1;
+            playerScore++;
         }
         else if (winner === "computer") {
-            computerScore += 1;
+            computerScore++;
         }
     console.log("the score is now " + playerScore + " to player, and " + computerScore + " to the computer.");
 }
