@@ -3,7 +3,26 @@ let playerScore = 0;
 let computerScore = 0;
 let roundsPlayed = 0;
 
-playGame();
+//UI
+
+const buttons = document.querySelector('.Buttons');
+const rockButton = document.createElement('button');
+const paperButton = document.createElement('button');
+const scissorsButton = document.createElement('button');
+
+rockButton.textContent = 'Rock'
+paperButton.textContent = 'Paper'
+scissorsButton.textContent = 'Scissors'
+
+buttons.appendChild(rockButton);
+buttons.appendChild(paperButton);
+buttons.appendChild(scissorsButton);
+
+rockButton.addEventListener('click', () => playRound('rock'))
+paperButton.addEventListener('click', () => playRound('paper'))
+scissorsButton.addEventListener('click', () => playRound('scissors'))
+
+//playGame();
 
 //get random number between 0 and 1
 //choose either rock, paper or scissors based on that number to result
@@ -31,8 +50,8 @@ function getComputerChoice() {
 //convert user input to lower case
 //return player input
 
-function getPlayerChoice() {
-    let playerInput = prompt("Choose either rock, paper or scissors!").toLowerCase();
+function getPlayerChoice(playerInput) {
+    //let playerInput = prompt("Choose either rock, paper or scissors!").toLowerCase();
     console.log("player picked " + playerInput);
     return playerInput;
 }
@@ -73,9 +92,9 @@ function getWinner(userChoice, computerChoice) {
 //increase the winners points
 //log the new score
 
-function playRound() {
+function playRound(playerChoice) {
     const computerChoice = getComputerChoice();
-    const playerChoice = getPlayerChoice();
+    //const playerChoice = getPlayerChoice();
 
     let winner = getWinner(playerChoice, computerChoice);
     winner;
@@ -86,6 +105,7 @@ function playRound() {
         else if (winner === "computer") {
             computerScore++;
         }
+    console.log("player picked " + playerChoice);
     console.log("the score is now " + playerScore + " to player, and " + computerScore + " to the computer.");
 }
 
@@ -94,9 +114,7 @@ function playRound() {
 
 function playGame() {
     let totalRounds = 5;
-    while (roundsPlayed < totalRounds) {
-        playRound();
-    }
+    playRound();
     
     if (playerScore > computerScore) {
         console.log("You won the game!")
@@ -109,3 +127,4 @@ function playGame() {
     }
 
 }
+
