@@ -5,9 +5,10 @@ let roundsPlayed = 0;
 
 //UI
 
-const roundsPlayedDiv = document.querySelector('.roundsPlayed')
-const computerChoiceDiv = document.querySelector('.computerChoice')
-const userChoiceDiv = document.querySelector('.userChoice')
+const winnerDiv = document.querySelector('.winner');
+const roundsPlayedDiv = document.querySelector('.roundsPlayed');
+const computerChoiceDiv = document.querySelector('.computerChoice');
+const userChoiceDiv = document.querySelector('.userChoice');
 const scoreDiv = document.querySelector('.score');
 const buttons = document.querySelector('.Buttons');
 const rockButton = document.createElement('button');
@@ -49,9 +50,8 @@ function getComputerChoice() {
     return result;
 }
 
-//prompt user
-//get users input
-//convert user input to lower case
+//get players input
+//display player's input
 //return player input
 
 function getPlayerChoice(playerInput) {
@@ -68,7 +68,6 @@ function getPlayerChoice(playerInput) {
 
 function getWinner(userChoice, computerChoice) {
     let winner = undefined;
-
         if (userChoice === computerChoice) {
             winner = "draw";
         }
@@ -92,42 +91,42 @@ function getWinner(userChoice, computerChoice) {
 
 //get players choice
 //get computers choice
+//check rounds played
 //get the winner
 //increase the winners points
-//log the new score
+//display the new score
 
 function playRound(playerChoice) {
-    const computerChoice = getComputerChoice();
-    //const playerChoice = getPlayerChoice();
+    if (roundsPlayed < 5) {
+        const computerChoice = getComputerChoice();
 
-    let winner = getWinner(playerChoice, computerChoice);
-    winner;
+        let winner = getWinner(playerChoice, computerChoice);
+        winner;
 
-    if (winner === "player") {
+        if (winner === "player") {
             playerScore++;
         }
         else if (winner === "computer") {
             computerScore++;
         }
-    userChoiceDiv.textContent = `Player picked ${playerChoice}`
-    scoreDiv.textContent = `The score is now ${playerScore} to player, and ${computerScore} to the computer.`;
-}
+        userChoiceDiv.textContent = `Player picked ${playerChoice}`;
+        scoreDiv.textContent = `The score is now ${playerScore} to player, and ${computerScore} to the computer.`;
+    };
+    if (roundsPlayed === 5) {
+        announceWinner();
+    };
+};
 
-//if less than 5 rounds have been played, play round
-//log final result
+//display final result depending on score
 
-function playGame() {
-    let totalRounds = 5;
-    
+function announceWinner() {
     if (playerScore > computerScore) {
-        console.log("You won the game!")
+        winnerDiv.textContent = "You won the game!";
     }
     else if (playerScore < computerScore) {
-        console.log("You lost the game!")
+        winnerDiv.textContent = "You lost the game!";
     }
     else {
-        console.log("The game was a draw.")
-    }
-
-}
-
+        winnerDiv.textContent = "The game was a draw.";
+    };
+};
